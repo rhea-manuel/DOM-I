@@ -43,7 +43,7 @@ let logo = document.getElementById("logo-img");
 logo.setAttribute('src', siteContent["nav"]["img-src"]);
 
 
-// Update the navigation links
+// TOP NAV LINKS
 const nav = document.querySelector('nav');
 const allNavLinks = nav.querySelectorAll('a');
 
@@ -59,3 +59,69 @@ for (let i = 0; i < allNavLinks.length; i++){
 // });
 
 // 
+
+// CTA
+const ctaH1 = document.querySelector(".cta-text h1");
+// const ctaH1 = ctaText.firstChild;
+// console.log(ctaH1);
+// const brTag = document.createElement('br');
+// console.log(ctaH1.innerText);
+
+// ctaH1.textContent = siteContent["cta"]["h1"];
+ctaH1.innerHTML = "DOM<br>IS<br>AWESOME"
+
+// ctaH1.textContent = "DOM"+brTag+"Is"+brTag+"Awesome";
+// ctaH1.textContent = siteContent.cta.h1.replace(" ", "<br />");
+// console.log(ctaH1.innerText);
+
+const ctaButton = document.querySelector(".cta-text button")
+ctaButton.innerText = siteContent.cta.button;
+
+const ctaImg = document.querySelector("#cta-img");
+// console.log(siteContent.cta["img-src"]);
+
+ctaImg.src=siteContent.cta["img-src"];
+
+// console.log(siteContent);
+
+// TOP CONTENT
+// const feature = document.querySelector(".top-content .text-content");
+// console.log(siteContent["main-content"]["features-h4"]);
+
+const topList = ["features", "about"];
+const bottomList = ["services", "product", "vision"];
+
+modifyItem(".top-content", topList);
+modifyItem(".bottom-content", bottomList);
+
+// feature.querySelector("h4").innerText = siteContent["main-content"]["features-h4"];
+// feature.querySelector("p").innerText = siteContent["main-content"]["features-content"];
+
+// const about = document.querySelector(".top-content .text-content:nth-child(2)");
+// about.querySelector("h4").innerText = siteContent["main-content"]["about-h4"];
+// about.querySelector("p").innerText = siteContent["main-content"]["about-content"];
+
+const middleImg = document.querySelector("#middle-img");
+middleImg.src=siteContent["main-content"]["middle-img-src"];
+
+// const services = document.querySelector(".bottom-content .text-content");
+// services.querySelector("h4").innerText = siteContent["main-content"]["services-h4"];
+// services.querySelector("p").innerText = siteContent["main-content"]["services-content"];
+
+function modifyItem (topOrBottom, itemList){
+  console.log(topOrBottom);
+  const curParent = document.querySelector(topOrBottom);
+  const numChildren = curParent.querySelectorAll("div");
+
+  // console.log(numChildren.length);
+
+  for (let i = 0; i < numChildren.length; i++){
+    // const text = topOrBottom + ".text-content:nth-child("+(i+1)+")";
+    // console.log(text);
+    const curItem = document.querySelector(topOrBottom +" .text-content:nth-child("+(i+1)+")");
+    console.log(curItem);
+    curItem.querySelector("h4").innerText = siteContent["main-content"][itemList[i]+"-h4"];
+    curItem.querySelector("p").innerText = siteContent["main-content"][itemList[i]+"-content"];
+  }
+
+}
