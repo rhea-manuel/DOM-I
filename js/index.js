@@ -47,11 +47,24 @@ logo.setAttribute('src', siteContent["nav"]["img-src"]);
 const nav = document.querySelector('nav');
 const allNavLinks = nav.querySelectorAll('a');
 
+const firstLink = document.createElement("a");
+firstLink.innerText = "Happy"
+firstLink.style.color = "green"
+nav.prepend(firstLink);
+
+const secondLink = document.createElement("a");
+secondLink.innerText = "Days"
+secondLink.style.color = "green"
+nav.appendChild(secondLink);
+
 console.log(allNavLinks);
 
 for (let i = 0; i < allNavLinks.length; i++){
   allNavLinks[i].textContent=siteContent.nav["nav-item-"+(i+1)];
+  allNavLinks[i].style.color = "green";
 }
+
+// allNavLinks.forEach(curLink => curLink.style.color="green");
 
 // allNavLinks.forEach((link,index)=>{
 //   link.textContent = nav["nav-i"];
@@ -125,3 +138,26 @@ function modifyItem (topOrBottom, itemList){
   }
 
 }
+
+const contactArray = Object.values(siteContent["contact"]);
+console.log(contactArray);
+const contactChildren = document.querySelector(".contact").children;
+console.log(contactChildren);
+
+for (let i = 0; i < contactChildren.length; i ++){
+  contactChildren[i].innerText = contactArray[i];
+}
+
+// for (const curItem in contactArray){
+//   contactChildren[i].innerText = curItem;
+// }
+
+// const contact = document.querySelector("contact");
+// contact.querySelector("h4").innerText = 
+
+const footer = document.querySelector("footer p");
+footer.innerText = siteContent.footer.copyright;
+
+// function modifySection(name){
+
+// }
