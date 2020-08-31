@@ -44,9 +44,12 @@ logo.setAttribute('src', siteContent["nav"]["img-src"]);
 
 
 // TOP NAV LINKS
+
+// Accessed Nav & child links
 const nav = document.querySelector('nav');
 const allNavLinks = nav.querySelectorAll('a');
 
+// Created first and last links
 const firstLink = document.createElement("a");
 firstLink.innerText = "Happy"
 firstLink.style.color = "green"
@@ -57,107 +60,69 @@ secondLink.innerText = "Days"
 secondLink.style.color = "green"
 nav.appendChild(secondLink);
 
-console.log(allNavLinks);
-
+// Populate all the rest of the links from the object list, and changes color of them.
 for (let i = 0; i < allNavLinks.length; i++){
   allNavLinks[i].textContent=siteContent.nav["nav-item-"+(i+1)];
   allNavLinks[i].style.color = "green";
 }
 
-// allNavLinks.forEach(curLink => curLink.style.color="green");
-
-// allNavLinks.forEach((link,index)=>{
-//   link.textContent = nav["nav-i"];
-//   // console.log(nav[`nav-item=${index}`]);
-// });
-
-// 
 
 // CTA
-const ctaH1 = document.querySelector(".cta-text h1");
-// const ctaH1 = ctaText.firstChild;
-// console.log(ctaH1);
-// const brTag = document.createElement('br');
-// console.log(ctaH1.innerText);
 
-// ctaH1.textContent = siteContent["cta"]["h1"];
+// Used innerHtml to replicate the <br> of the original.
+const ctaH1 = document.querySelector(".cta-text h1");
 ctaH1.innerHTML = "DOM<br>IS<br>AWESOME"
 
-// ctaH1.textContent = "DOM"+brTag+"Is"+brTag+"Awesome";
-// ctaH1.textContent = siteContent.cta.h1.replace(" ", "<br />");
-// console.log(ctaH1.innerText);
-
+// Added the button
 const ctaButton = document.querySelector(".cta-text button")
 ctaButton.innerText = siteContent.cta.button;
 
+// Image SRC is updated
 const ctaImg = document.querySelector("#cta-img");
-// console.log(siteContent.cta["img-src"]);
-
 ctaImg.src=siteContent.cta["img-src"];
 
-// console.log(siteContent);
-
-// TOP CONTENT
-// const feature = document.querySelector(".top-content .text-content");
-// console.log(siteContent["main-content"]["features-h4"]);
-
+// Two arrays populated with the names of the item headings
 const topList = ["features", "about"];
 const bottomList = ["services", "product", "vision"];
 
 modifyItem(".top-content", topList);
 modifyItem(".bottom-content", bottomList);
 
-// feature.querySelector("h4").innerText = siteContent["main-content"]["features-h4"];
-// feature.querySelector("p").innerText = siteContent["main-content"]["features-content"];
-
-// const about = document.querySelector(".top-content .text-content:nth-child(2)");
-// about.querySelector("h4").innerText = siteContent["main-content"]["about-h4"];
-// about.querySelector("p").innerText = siteContent["main-content"]["about-content"];
-
-const middleImg = document.querySelector("#middle-img");
-middleImg.src=siteContent["main-content"]["middle-img-src"];
-
-// const services = document.querySelector(".bottom-content .text-content");
-// services.querySelector("h4").innerText = siteContent["main-content"]["services-h4"];
-// services.querySelector("p").innerText = siteContent["main-content"]["services-content"];
-
+// Function to automatically populate the item lists
 function modifyItem (topOrBottom, itemList){
+
+  // Gets all the divs inside the parent
   console.log(topOrBottom);
   const curParent = document.querySelector(topOrBottom);
   const numChildren = curParent.querySelectorAll("div");
 
-  // console.log(numChildren.length);
-
+  // Modifies all the children items using their property in the array.
   for (let i = 0; i < numChildren.length; i++){
-    // const text = topOrBottom + ".text-content:nth-child("+(i+1)+")";
-    // console.log(text);
+
+    // Gets the appropriate child
     const curItem = document.querySelector(topOrBottom +" .text-content:nth-child("+(i+1)+")");
     console.log(curItem);
+
+    // Modifies the correct item
     curItem.querySelector("h4").innerText = siteContent["main-content"][itemList[i]+"-h4"];
     curItem.querySelector("p").innerText = siteContent["main-content"][itemList[i]+"-content"];
   }
 
 }
 
-const contactArray = Object.values(siteContent["contact"]);
-console.log(contactArray);
-const contactChildren = document.querySelector(".contact").children;
-console.log(contactChildren);
+// Adds the correct src to middle img.
+const middleImg = document.querySelector("#middle-img");
+middleImg.src=siteContent["main-content"]["middle-img-src"];
 
+// Coverts the contact object values into an array, since all the values just have to populate through all the items
+const contactArray = Object.values(siteContent["contact"]);
+const contactChildren = document.querySelector(".contact").children;
+
+// Populates the child elements with the correct text.
 for (let i = 0; i < contactChildren.length; i ++){
   contactChildren[i].innerText = contactArray[i];
 }
 
-// for (const curItem in contactArray){
-//   contactChildren[i].innerText = curItem;
-// }
-
-// const contact = document.querySelector("contact");
-// contact.querySelector("h4").innerText = 
-
+// Adds inner text of the footer
 const footer = document.querySelector("footer p");
 footer.innerText = siteContent.footer.copyright;
-
-// function modifySection(name){
-
-// }
