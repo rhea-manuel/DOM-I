@@ -8,6 +8,7 @@ const siteContent = {
     "nav-item-6": "Contact",
     "img-src": "img/logo.png"
   },
+
   "cta": {
     "h1": "DOM Is Awesome",
     "button": "Get Started",
@@ -39,4 +40,22 @@ const siteContent = {
 
 // Example: Update the img src for the logo
 let logo = document.getElementById("logo-img");
-logo.setAttribute('src', siteContent["nav"]["img-src"])
+logo.setAttribute('src', siteContent["nav"]["img-src"]);
+
+
+// Update the navigation links
+const nav = document.querySelector('nav');
+const allNavLinks = nav.querySelectorAll('a');
+
+console.log(allNavLinks);
+
+for (let i = 0; i < allNavLinks.length; i++){
+  allNavLinks[i].textContent=siteContent.nav["nav-item-"+(i+1)];
+}
+
+// allNavLinks.forEach((link,index)=>{
+//   link.textContent = nav["nav-i"];
+//   // console.log(nav[`nav-item=${index}`]);
+// });
+
+// 
